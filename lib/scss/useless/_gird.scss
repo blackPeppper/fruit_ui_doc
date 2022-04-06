@@ -1,0 +1,129 @@
+$gird-gap: 0 !default;
+$grid-columns: 12 !default;
+$col-min-width: 0 !default;
+
+$grid-gap-sizes: (
+  "xxs":  0.375rem,
+  "xs":   0.5rem,
+  "sm":   0.75rem,
+  "md":   1.25rem,
+  "lg":   2rem,
+  "xl":   3.25rem,
+  "xxl":  5.25rem,
+  "xxxl": 8.5rem,
+) !default;
+
+$grid-sizes: (
+  "xs": 8rem,
+  "sm": 10rem,
+  "md": 15rem,
+  "lg": 20rem,
+  "xl": 25rem,
+) !default;
+
+.grid,
+[class*="grid-auto-"] {
+  display: grid;
+  gap: $gird-gap;
+}
+
+.grid {
+  grid-template-columns: repeat($grid-columns, 1fr);
+
+  > * {
+    grid-column-end: span $grid-columns;
+  }
+}
+
+@each $key, $val in $grid-gap-sizes {
+  .grid-gap-#{$key} {
+    $gird-gap: $val;
+  }
+}
+
+.grid-auto\:xs,.grid-auto\:sm,.grid-auto\:md,
+.grid-auto\:lg,.grid-auto\:xl  {
+  grid-template-columns: repeat(auto-fit, minmax($col-min-width, 1fr));
+}
+
+@each $key, $val in $grid-sizes {
+  .grid-auto\:#{$key} {
+    $col-min-width: $val;
+  }
+}
+
+.grid-auto-cols {
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
+.grid-col-start {
+  grid-column-start: 1;
+}
+
+.grid-col-end {
+  grid-column-end: -1;
+}
+
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    grid-column-end: span #{$i};
+  }
+  .col-start-#{$i} {
+    grid-column-start: #{$i};
+  }
+  .col-end-#{$i + 1} {
+    grid-column-end: #{$i + 1};
+  }
+}
+
+@mixin grid-passer($prop) {
+    @each $key, $val in $grid-sizes {
+      .grid-auto-#{$key}\:#{$prop} {
+        $col-min-width: $val;
+      }
+    }
+    .grid-auto-cols\:#{$prop} {
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    }
+
+    @for $i from 1 through $grid-columns {
+      .gird-col-#{$i}\:#{$prop} {
+        grid-column-end: span #{$i};
+      }
+      .grid-col-start-#{$i}\:#{$prop} {
+        grid-column-start: #{$i};
+      }
+      .grid-col-end-#{$i + 1}\:#{$prop} {
+        grid-column-end: #{$i + 1};
+      }
+    }
+
+    .grid-col-start-auto\:#{$prop} {
+      grid-column-start: auto;
+    }
+    .grid-col-end-auto\:#{$prop} {
+      grid-column-end: auto;
+    }
+}
+
+@include xs {
+  @include grid-passer(xs);
+}
+@include sm {
+  @include grid-passer(sm);
+}
+@include md {
+  @include grid-passer(md);
+}
+@include lg {
+  @include grid-passer(lg);
+}
+@include xl {
+  @include grid-passer(xl);
+}
+
+@if $xxl-size {
+  @include xxl {
+    @include grid-passer(xxl)
+  }
+}

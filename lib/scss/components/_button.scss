@@ -1,0 +1,55 @@
+[class*="btn"] {
+  &:hover:not(.muted) {
+    filter: brightness(1.07);
+  }
+  &:active:not(.muted) {
+    transform: scale(0.9);
+  }
+}
+
+[class*="btn"] {
+  border: 0;
+  margin: 3px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  display: inline-block;
+  transition: all 0.1s ease-in;
+  border-radius: $base-border-radius;
+  padding: $base-padding $base-padding * 2;
+}
+
+.btn {
+  @include sync-color(#bcdbff);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: $base-border-thickness solid #bcdbff;
+  color: #2389ff;
+  &:hover:not(.muted) {
+    @include sync-color(#bcdbff);
+  }
+}
+
+@each $key, $val in $colors {
+  .btn-#{$key} {
+    @include sync-color($val);
+  }
+  .btn-outlined-#{$key} {
+    color: $val;
+    background-color: transparent;
+    border: $base-border-thickness solid $val;
+    &:hover:not(.muted) {
+      @include sync-color($val);
+    }
+  }
+}
+
+.btn-outlined-white {
+  color: #979393;
+  &:hover:not(.muted) {
+    border-color: #dadada;
+  }
+}

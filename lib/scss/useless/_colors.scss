@@ -1,0 +1,101 @@
+@each $key, $val in $colors {
+  .text-#{$key} {
+    color: $val;
+  }
+
+  .bg-#{$key} {
+    background-color: $val;
+  }
+
+  @if $hover-colors {
+    .hover\:text-#{$key} {
+      &:hover {
+        color: $val;
+      }
+    }
+    .hover\:bg-#{$key} {
+      &:hover {
+        background-color: $val;
+      }
+    }
+  }
+
+  @if $active-colors {
+    .active\:text-#{$key} {
+      &:active {
+        color: $val;
+      }
+    }
+    .active\:bg-#{$key} {
+      &:active {
+        background-color: $val;
+      }
+    }
+  }
+
+  @if ($val !=black and $val !=white and $lighter-darker-colors) {
+    // light variations
+    @for $i from 1 through $color-index {
+      .text-#{$key}-light-#{$i} {
+        color: mix(white, $val, $i * 10);
+      }
+      .bg-#{$key}-light-#{$i} {
+        background-color: mix(white, $val, $i * 10);
+      }
+      @if $hover-colors {
+        .hover\:text-#{$key}-light-#{$i} {
+          &:hover {
+            color: mix(white, $val, $i * 10);
+          }
+        }
+      }
+      @if $active-colors {
+        .active\:text-#{$key}-light-#{$i} {
+          &:active {
+            color: mix(white, $val, $i * 10);
+          }
+        }
+        .active\:bg-#{$key}-light-#{$i} {
+          &:active {
+            background-color: mix(white, $val, $i * 10);
+          }
+        }
+      }
+    }
+
+    // dark variations
+    @for $i from 1 through $color-index {
+      .text-#{$key}-dark-#{$i} {
+        color: mix(black, $val, $i * 10);
+      }
+      .bg-#{$key}-dark-#{$i} {
+        background-color: mix(black, $val, $i * 10);
+      }
+      @if $hover-colors {
+        .hover\:text-#{$key}-dark-#{$i} {
+          &:hover {
+            color: mix(black, $val, $i * 10);
+          }
+          .hover\:bg-#{$key}-dark-#{$i} {
+            &:hover {
+              background-color: mix(black, $val, $i * 10);
+            }
+          }
+        }
+      }
+
+      @if $active-colors {
+        .active\:text-#{$key}-dark-#{$i} {
+          &:active {
+            color: mix(black, $val, $i * 10);
+          }
+        }
+        .active\:bg-#{$key}-dark-#{$i} {
+          &:active {
+            background-color: mix(black, $val, $i * 10);
+          }
+        }
+      }
+    }
+  }
+}
