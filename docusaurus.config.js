@@ -1,6 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const path = require('path');
+
 const lightCodeTheme = require('prism-react-renderer/themes/palenight');
 const darkCodeTheme = require('prism-react-renderer/themes/palenight');
 
@@ -22,6 +24,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -37,8 +40,12 @@ const config = {
         },
       }),
     ],
+    
+
+
   ],
 
+  
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -60,7 +67,7 @@ const config = {
             position: 'right',
             dropdownActiveClassDisabled: true,
           },
-          {to: '/docs', label: 'docs', position: 'left'},
+          {to: '/docs/intro', label: 'docs', position: 'left'},
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/facebook/docusaurus',
@@ -112,6 +119,7 @@ const config = {
             ],
           },
         ],
+
         copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
       prism: {
@@ -119,6 +127,9 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+    // plugins: [
+    //   path.join(__dirname, "./plugins/shadowDom.js"),
+    // ],
 };
 
 module.exports = config;

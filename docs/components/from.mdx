@@ -1,0 +1,60 @@
+---
+sidebar_position: 1
+---
+
+# from
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+  <TabItem value="demo" label="demo" default>
+    <div class="stage">
+      <div class="card">
+        <form class="form-group">
+          <label class="label">email</label>
+          <input class="form" type="email" placeholder="enter your email"/>
+          <label class="label">password</label>
+          <input class="form" type="password" placeholder="enter your password"/>
+          <div class="form-part">
+            <input type="checkbox" id="checky" placeholder="enter your password"/>
+            <label class="label" for="checky">check me</label>
+          </div>
+          <div class="form-part">
+            <input type="radio" id="le" name="one" value="ture" placeholder="enter your password"/>
+            <label for="le" class="label">one</label>
+          </div>
+          <div class="form-part">
+            <input type="radio" id="e" name="one" value="false" placeholder="enter your password"/>
+            <label for="e" class="label">tow</label>
+          </div>
+          <div class="form-part">
+            <input class="btn-primary submit" type="submit" value="submit" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </TabItem>
+  <TabItem value="orange" label="code"></TabItem>
+</Tabs>
+
+<hr class="mx-5" />
+
+<Tabs>
+  <TabItem value="apple" label="demo" default>
+    <div class="stage">
+      <div class="card">
+        <form action="" class="form-group">
+          <div class="floating-div">
+              <input type="text" class="floating-form" placeholder=" "/>
+              <label for="" class="floating-label">Email</label>
+          </div>
+          <div class="floating-div">
+            <input type="password" class="floating-form" placeholder=" " />
+            <label for="" class="floating-label">Password</label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </TabItem>
+</Tabs>
